@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "b2296d1c-3308-4427-8670-8c8ae9eeca25",
+		"name": "SwapiPlanets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetPlanets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SwapiPlanetsUrl}}/planets",
+					"host": [
+						"{{SwapiPlanetsUrl}}"
+					],
+					"path": [
+						"planets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPlanet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SwapiPlanetsUrl}}/planets/5",
+					"host": [
+						"{{SwapiPlanetsUrl}}"
+					],
+					"path": [
+						"planets",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePlanet",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"PlanetId\": 2,\r\n    \"Name\": \"FOOO\",\r\n    \"Species\": [1, 7, 10]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SwapiPlanetsUrl}}/planets/",
+					"host": [
+						"{{SwapiPlanetsUrl}}"
+					],
+					"path": [
+						"planets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePlanet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"Jupiter\",\r\n    \"Species\": [1, 6, 7]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SwapiPlanetsUrl}}/planets/",
+					"host": [
+						"{{SwapiPlanetsUrl}}"
+					],
+					"path": [
+						"planets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePlanet",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SwapiPlanetsUrl}}/planets/5",
+					"host": [
+						"{{SwapiPlanetsUrl}}"
+					],
+					"path": [
+						"planets",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "SwapiPlanetsUrl",
+			"value": "http://localhost:24478"
+		}
+	]
+}
