@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Database.Models
+namespace DomainModels.Models
 {
     public class Species
     {

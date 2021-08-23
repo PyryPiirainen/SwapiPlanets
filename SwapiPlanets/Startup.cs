@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using Services.Services;
+using SwapiPlanets.Clients;
 using SwapiPlanets.Mappings;
 using System;
 using System.Collections.Generic;
@@ -34,8 +36,16 @@ namespace SwapiPlanets
             );
             services.AddScoped<IPlanetRepository, PlanetRepository>();
             services.AddScoped<PlanetMappings>();
+            services.AddScoped<SwapiClient>();
 
-            services.AddSwaggerGen();
+            services.AddHttpClient(Constants.Swapi, c =>
+            {
+                c.BaseAddress = new Uri(Configuration["SwapiBaseUrl"]);
+            });
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SwapiPlanets", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

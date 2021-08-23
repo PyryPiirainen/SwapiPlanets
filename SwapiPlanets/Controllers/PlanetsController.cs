@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Services;
+using SwapiPlanets.Clients;
 using SwapiPlanets.Dtos;
 using SwapiPlanets.Mappings;
 using System;
@@ -17,15 +18,18 @@ namespace SwapiPlanets.Controllers
         private readonly ILogger<PlanetsController> _logger;
         private readonly IPlanetRepository _planetRepository;
         private readonly PlanetMappings _mappings;
+        private readonly SwapiClient _swapiClient;
 
         public PlanetsController(
             ILogger<PlanetsController> logger,
             IPlanetRepository planetRepository,
-            PlanetMappings mappings)
+            PlanetMappings mappings,
+            SwapiClient swapiClient)
         {
             _logger = logger;
             _planetRepository = planetRepository;
             _mappings = mappings;
+            _swapiClient = swapiClient;
         }
 
         [HttpPost]
@@ -37,6 +41,12 @@ namespace SwapiPlanets.Controllers
             }
 
             var planet = _mappings.FromDto(planetDto);
+
+            if (!await _swapiClient.IsValidSpecies(planet.Species))
+            {
+                return BadRequest("Invalid species ids detected.");
+            }
+
             await _planetRepository.CreatePlanet(planet);
             await _planetRepository.SaveChangesAsync();
 
@@ -70,6 +80,11 @@ namespace SwapiPlanets.Controllers
             }
 
             var planetUpdate = _mappings.FromDto(planetDto);
+
+            if (!await _swapiClient.IsValidSpecies(planetUpdate.Species))
+            {
+                return BadRequest("Invalid species ids detected.");
+            }
 
             var updatedPlanet = await _planetRepository.UpdatePlanet(planetUpdate);
             if (updatedPlanet == null)

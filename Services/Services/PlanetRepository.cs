@@ -1,5 +1,5 @@
 ﻿using Database;
-using Database.Models;
+using DomainModels.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;

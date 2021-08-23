@@ -1,4 +1,4 @@
-﻿using Database.Models;
+﻿using DomainModels.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

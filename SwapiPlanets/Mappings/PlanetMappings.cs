@@ -1,4 +1,4 @@
-﻿using Database.Models;
+﻿using DomainModels.Models;
 using SwapiPlanets.Dtos;
 using System;
 using System.Collections.Generic;
