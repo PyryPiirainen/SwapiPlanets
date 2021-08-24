@@ -43,9 +43,7 @@ namespace SwapiPlanets
                 c.BaseAddress = new Uri(Configuration["SwapiBaseUrl"]);
             });
 
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SwapiPlanets", Version = "v1" });
-            });
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -71,8 +69,6 @@ namespace SwapiPlanets
             {
                 endpoints.MapControllers();
             });
-
-            
         }
     }
 }

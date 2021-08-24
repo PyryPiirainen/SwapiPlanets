@@ -33,8 +33,8 @@ namespace SwapiPlanets.Clients
         public async Task<bool> IsValidSpecies(Species species)
         {
             HttpClient client = _clientFactory.CreateClient(Constants.Swapi);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"species/{species.SpeciesId}");
-            var response = await client.SendAsync(request);
+            using var request = new HttpRequestMessage(HttpMethod.Get, $"species/{species.SpeciesId}");
+            using var response = await client.SendAsync(request);
             
             if (response.StatusCode == HttpStatusCode.OK)
             {
